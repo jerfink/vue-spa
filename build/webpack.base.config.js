@@ -1,6 +1,8 @@
 const path = require("path");
+const env = process.env.NODE_ENV;
 
 const config = {
+  mode: env || "development",
   entry: {
     app: path.resolve(__dirname, "../src/client-entry.js")
   },
