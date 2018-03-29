@@ -15,5 +15,6 @@
   },
   "devDependencies": {
     "webpack": "^4.4.1"
+
   }
 }
