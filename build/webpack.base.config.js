@@ -1,32 +1,35 @@
-const path = require("path");
-const env = process.env.NODE_ENV;
+const path = require('path')
+const env = process.env.NODE_ENV
 
 const config = {
-  mode: env || "development",
+  mode: env || 'development',
   entry: {
-    app: path.resolve(__dirname, "../src/client-entry.js")
+    app: path.resolve(__dirname, '../src/client-entry.js')
   },
   module: {
     rules: [
       {
-        enforce: "pre",
-        test: /(\.js$)/,
+        enforce: 'pre',
+        test: /(\.js$)|(\.vue$)/,
         loader: this.query,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
         exclude: /node_modules/
       }
     ]
   },
-  resolve: {
-    alias: {
-      vue: "vue/dist/vue.js"
-    }
-  },
   output: {
-    path: path.resolve(__dirname, "../dist"),
-    publicPath: "/",
-    filename: "assets/js/[name].js"
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
+    filename: 'assets/js/[name].js'
   }
-};
+}
 
-module.exports = config;
-
+module.exports = config
